@@ -1,19 +1,26 @@
 import type  { User } from '../types/User';
 import { useState, useEffect } from 'react';
 import { getUser } from '../services/userService';
+import { getErrorMessage } from '../utils/getErrorMessage';
 
 export function useUser() {
   const [users, setUsers] = useState<User[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadUsers = async () => {
-      const res = await getUser();
-      setUsers(res.data);
-      setIsLoading(false);
+      try{
+        const res = await getUser();
+        setUsers(res.data);
+      }catch(error) {
+        setError(getErrorMessage(error));
+      }finally {
+        setIsLoading(false);
+      }
     }
     loadUsers();
   },[]);
 
-  return { users, isLoading };
+  return { users, isLoading, error };
 }
