@@ -12,6 +12,10 @@ export function useUser() {
     const loadUsers = async () => {
       try{
         const res = await getUser();
+        if (!res.success) {
+          setError(res.message);
+          return;
+        }
         setUsers(res.data);
       }catch(error) {
         setError(getErrorMessage(error));
