@@ -13,7 +13,7 @@ export function useUser() {
       try{
         const res = await getUser();
         if (!res.success) {
-          setError(res.message);
+          setError(res.message || 'Failed to load user data.');
           return;
         }
         setUsers(res.data);
