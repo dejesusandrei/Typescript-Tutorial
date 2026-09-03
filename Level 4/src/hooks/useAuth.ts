@@ -8,9 +8,10 @@ import {
   type LoginCredentials,
   type SignupCredentials
 } from "../services/authService";
+import type { User } from "../types/User";
 
 export function useAuth() {
-  const [authState, setAuthState] = useState<AuthState>({
+  const [authState, setAuthState] = useState<AuthState<User>>({
     status: 'loading'
   });
 
