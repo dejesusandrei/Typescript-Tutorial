@@ -9,7 +9,6 @@ export const PaginationSchema = z.object({
 });
 
 export const PaginatedTaskResponseSchema = z.object({
-  success: z.boolean(),
   data: TaskSchema.array(),
   pagination: PaginationSchema,
   message: z.string().optional(),

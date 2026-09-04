@@ -1,9 +1,10 @@
 import { useState } from 'react'
-
+import TaskList from './components/TaskList'
 
 function App() {
   return(
     <>
+    <TaskList/>
     </>
   );
 }
